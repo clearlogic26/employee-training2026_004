@@ -125,6 +125,148 @@ document.addEventListener('DOMContentLoaded', async function() {
     const firstShiftRule = '<li><strong>First Shift Rule:</strong> Before the second shift arrives, restock all spoons and cups, make every flavor that fits in the tanks, fill the vanilla and chocolate tanks, wring out all rags, and leave the store spotless. The second shift must arrive to a store that is fully ready for work—with nothing left for them to finish.</li>\n        ';
     template = template.replace(workplaceRuleAnchor, cameraRule + firstShiftRule + workplaceRuleAnchor);
 
+    const quizBankSource = `
+  const QUIZ_BANK = [
+    { id: "pwi-name", q: "What does PWI stand for?", answer: "Polish Water Ice", wrong: ["Premium Water Ice", "Polish Wildwood Ice", "Pure Water Ice"] },
+    { id: "top-flavor", q: "Which PWI flavor is the #1 seller?", answer: "Cotton Candy", wrong: ["Cherry", "Mango", "Blue Raspberry"] },
+    { id: "pwi-description", q: "How is PWI different from regular water ice?", answer: "It is smoother and creamier", wrong: ["It has dairy added", "It contains alcohol", "It is sugar-free"] },
+    { id: "pwi-what", q: "What is PWI?", answer: "A dairy-free, fruit-flavored frozen treat eaten with a spoon", wrong: ["Soft-serve ice cream", "A dairy milkshake", "A carbonated soda"] },
+    { id: "pwi-polish-name", q: "Why is it called Polish Water Ice?", answer: "The founder had Polish roots", wrong: ["It is imported from Poland", "Every flavor has a Polish name", "It contains Polish spring water"] },
+    { id: "water-ice-vs-ice-cream", q: "What is the difference between water ice and ice cream?", answer: "Water ice is a dairy-free frozen treat; ice cream is soft serve", wrong: ["They are exactly the same", "Water ice always contains dairy", "Ice cream is fruit-flavored ice"] },
+    { id: "dairy-free-products", q: "Which products are dairy-free?", answer: "PWI, Slushie, and Ice Cap", wrong: ["Polish Freeze, Chiller, and milkshake", "All products including ice cream", "Only bottled water"] },
+    { id: "dye-free", q: "What should you say if a customer asks whether PWI is dye-free?", answer: "PWI is not dye-free; vanilla and chocolate ice cream are dye-free options", wrong: ["All PWI flavors are dye-free", "Nothing in the store is dye-free", "Only Cotton Candy PWI is dye-free"] },
+    { id: "pwi-two-flavors", q: "How many PWI flavors may a guest mix in one cup?", answer: "Any 2 flavors", wrong: ["Only 1 flavor", "Any 3 flavors", "Unlimited flavors"] },
+    { id: "polish-freeze", q: "What is a Polish Freeze?", answer: "Water ice on one side and ice cream on the other, in one cup", wrong: ["A blended water-ice drink", "Soft serve with candy mix-ins", "Water ice mixed with soda"] },
+    { id: "chiller", q: "What is a Chiller?", answer: "Blended ice cream with candy mix-ins, similar to a Blizzard", wrong: ["A water ice float with soda", "Water ice and ice cream side by side", "A bottled frozen drink"] },
+    { id: "milkshake-sizes", q: "Which sizes are offered for milkshakes?", answer: "Small and large", wrong: ["Small only", "Medium and quart", "One universal size"] },
+    { id: "ice-cream-options", q: "Which soft-serve flavors are available?", answer: "Chocolate, vanilla, and twist", wrong: ["Vanilla only", "Chocolate and strawberry", "Any PWI flavor"] },
+    { id: "ice-cream-serving", q: "How may soft-serve ice cream be served?", answer: "In a cup, regular cone, or waffle cone", wrong: ["In a cup only", "In a waffle cone only", "In a logo cup only"] },
+    { id: "sprinkles-addon", q: "How are sprinkles handled?", answer: "They are an add-on that should be offered with every ice cream order", wrong: ["They are automatically included", "They are available only on Chillers", "Employees should never mention them"] },
+    { id: "slushie", q: "What is a Slushie?", answer: "Any PWI flavor blended with a little water", wrong: ["Ice cream blended with soda", "Water ice and ice cream side by side", "Soft serve with candy"] },
+    { id: "ice-cap", q: "What is an Ice Cap?", answer: "A water ice float made with a PWI flavor and soda", wrong: ["A plain bottled soda", "A blended ice cream dessert", "A cone dipped in water ice"] },
+    { id: "float", q: "What is a Float?", answer: "Ice cream with soda", wrong: ["Water ice blended with water", "Water ice and ice cream side by side", "A Chiller without mix-ins"] },
+    { id: "beverages", q: "Which simple bottled drinks are sold?", answer: "Water, soda, and Gatorade", wrong: ["Coffee, tea, and juice", "Energy drinks only", "Milk and lemonade only"] },
+    { id: "prices-tax", q: "Are menu prices before or after tax?", answer: "After tax — the 8.625% tax is already included", wrong: ["Before tax — add tax at checkout", "Tax is included only on cones", "Tax depends on the location"] },
+
+    { id: "welcome-job", q: "What is the basic job at PWI?", answer: "Keep service quick, accurate, and friendly while helping guests choose", wrong: ["Wait silently until guests decide", "Focus only on speed", "Let customers serve themselves"] },
+    { id: "welcome-double-check", q: "What should you do before handing out every order?", answer: "Double-check that it is correct", wrong: ["Ask another employee to take responsibility", "Hand it out immediately without checking", "Wait for the customer to correct you"] },
+    { id: "welcome-teamwork", q: "What keeps a busy boardwalk line moving smoothly?", answer: "Calm communication and teamwork", wrong: ["Everyone working independently without speaking", "Arguing about who made the mistake", "Slowing down every order"] },
+    { id: "welcome-study", q: "What should be studied before the first shift?", answer: "Products, prices, and the training quiz", wrong: ["Only the dress code", "Only the employee schedule", "Nothing — learn everything during the rush"] },
+
+    { id: "open-lights", q: "What should first shift do with the lights while opening?", answer: "Turn them on", wrong: ["Leave them off until the first sale", "Turn them on only at night", "Ask a customer"] },
+    { id: "open-clock", q: "What attendance action belongs on the opening checklist?", answer: "Clock in", wrong: ["Clock out", "Write the time on a cup", "Wait until the first customer"] },
+    { id: "open-machines", q: "What should be done with the machines while opening?", answer: "Turn them on", wrong: ["Keep all machines off", "Turn on only the ice cream machine", "Wait until the evening shift"] },
+    { id: "open-stir", q: "Which flavors must be stirred during opening?", answer: "Piña Colada, Mango, and Chocolate", wrong: ["Cherry, Lemon, and Cotton Candy", "Every flavor except Chocolate", "Only Mango"] },
+    { id: "open-rags", q: "What should be done with the rags under the machines during opening?", answer: "Wring them out", wrong: ["Throw them away", "Leave them soaking", "Put them on the counter"] },
+
+    { id: "close-machines-clean", q: "What must happen to all machines during closing?", answer: "Clean them thoroughly", wrong: ["Wipe only the outside", "Leave them for first shift", "Clean only machines used that hour"] },
+    { id: "close-surfaces", q: "What must happen to store surfaces during closing?", answer: "Wipe them down", wrong: ["Cover them with rags", "Leave them for the opener", "Clean only the register"] },
+    { id: "close-restock", q: "Why are supplies restocked during closing?", answer: "So the store is ready for the next day", wrong: ["Only to count them", "So employees can take extras home", "Restocking is not part of closing"] },
+    { id: "close-trash", q: "What must be done with trash cans during closing?", answer: "Empty them", wrong: ["Leave them for morning", "Move them behind the counter", "Empty only the fullest one"] },
+    { id: "close-power", q: "What should be turned off during closing?", answer: "All machines and lights", wrong: ["Only the lights", "Only the machines", "Nothing"] },
+    { id: "close-clock", q: "When should an employee clock out?", answer: "After completing the closing responsibilities", wrong: ["Before cleaning begins", "As soon as customers leave", "At any convenient time"] },
+    { id: "close-lock", q: "What is the final security step when closing?", answer: "Lock the store", wrong: ["Leave the door open for first shift", "Hide the key outside", "Turn on one machine"] },
+
+    { id: "counter-greet", q: "How should every customer be greeted?", answer: "With a smile", wrong: ["Only if they greet you first", "Without eye contact", "By pointing silently at the menu"] },
+    { id: "counter-proactive", q: "A guest looks confused by the menu. What should you do?", answer: "Offer help and suggest items", wrong: ["Wait until they become frustrated", "Ignore them until they order", "Tell them to search online"] },
+    { id: "counter-dont-guess", q: "What should you do when you do not know an answer?", answer: "Ask the manager instead of guessing", wrong: ["Invent an answer confidently", "Tell the customer it does not matter", "Ask another customer"] },
+    { id: "counter-repeat", q: "What should happen before you start making an order?", answer: "Repeat the order back", wrong: ["Ask for a tip", "Make it without confirming", "Send the guest to another window"] },
+    { id: "counter-cup-cone", q: "What must you ask when a customer orders ice cream?", answer: "Whether they want a cup or cone", wrong: ["Whether they want water ice instead", "Whether they brought their own cup", "Whether they will eat it tomorrow"] },
+    { id: "counter-cone-type", q: "After a customer chooses a cone, what should you ask?", answer: "Regular cone or waffle cone", wrong: ["Cup or bottle", "Cash or card before ordering", "Chocolate water ice or soda"] },
+    { id: "counter-size-display", q: "How should you help a customer choose a size?", answer: "Point to the display cups", wrong: ["Describe sizes without showing them", "Choose the largest size for them", "Hand them a used cup"] },
+    { id: "counter-extra-cup", q: "A customer asks for an extra cup. What kind should you provide?", answer: "A blank cup only", wrong: ["A PWI logo cup", "Any cup from the register area", "No cup under any circumstances"] },
+    { id: "counter-speed", q: "Why does speed matter on busy nights?", answer: "The boardwalk line moves fast", wrong: ["It allows employees to stop greeting guests", "Accuracy no longer matters", "It eliminates the need to clean"] },
+    { id: "counter-suggest-freeze", q: "What is an appropriate product suggestion?", answer: "Offer a Polish Freeze as water ice and ice cream together", wrong: ["Promise a free product", "Push the same item after the guest says no", "Tell every guest to order only bottled water"] },
+    { id: "default-vanilla", q: "Which ice cream is used by default in Chillers and Polish Freezes?", answer: "Vanilla", wrong: ["Chocolate", "Twist", "Always ask before using any base"] },
+    { id: "default-dont-offer", q: "Should you automatically offer chocolate or twist for a Chiller or Polish Freeze?", answer: "No. Use vanilla unless the customer asks for chocolate or twist", wrong: ["Yes, list every option every time", "Use chocolate unless stopped", "Use twist for every order"] },
+    { id: "counter-conflict", q: "What should you do if a customer situation escalates?", answer: "Stay calm, apologize, and offer to make it right", wrong: ["Argue until the customer agrees", "Ignore the customer", "Raise your voice and defend yourself"], required: true },
+    { id: "counter-chocolate", q: "A customer orders chocolate. What must you ask?", answer: "Chocolate water ice or chocolate ice cream?", wrong: ["Cup or bottle?", "Small or quart?", "Would you prefer Mango?"] },
+
+    { id: "phone-eyes", q: "What is the #1 phone and attention rule?", answer: "If you can see their eyes, you greet them", wrong: ["Use your phone until someone speaks", "Greet only paying customers", "Keep your eyes on the phone during slow periods"], required: true },
+    { id: "phone-privilege", q: "Is phone use during a shift a right?", answer: "No. It is a privilege that must not interfere with work", wrong: ["Yes, at any time", "Yes, whenever the owner is absent", "Yes, during every rush"] },
+    { id: "phone-awareness", q: "When may phone use be acceptable?", answer: "Only when it does not interfere with guests, eye contact, speed, food handling, or safety", wrong: ["Whenever friends are messaging", "While actively serving", "Whenever the line is shorter than five people"] },
+    { id: "phone-serving", q: "May phones be used while serving or acknowledging guests?", answer: "No", wrong: ["Yes, if held below the counter", "Yes, if the guest is paying cash", "Yes, at the employee's discretion"] },
+    { id: "phone-rush", q: "May phones be used during a rush or when a guest is nearby?", answer: "No", wrong: ["Yes, if the volume is low", "Yes, after taking one order", "Yes, if another employee is present"] },
+
+    { id: "dress-shirt", q: "What shirt is required during every shift?", answer: "A PWI shirt", wrong: ["Any plain shirt", "A sweatshirt covering the uniform", "No shirt requirement"] },
+    { id: "dress-shirt-cost", q: "What happens if you arrive without your PWI shirt?", answer: "You are given one at a cost of $20", wrong: ["You receive a free replacement every time", "Nothing happens", "A customer chooses your shirt"] },
+    { id: "dress-sneakers", q: "What footwear is required?", answer: "Sneakers", wrong: ["Open-toe sandals", "Bare feet", "Any footwear, including slippers"] },
+    { id: "dress-hair", q: "How must long hair be worn during a shift?", answer: "Tied up", wrong: ["Loose over the machines", "Covered by sunglasses", "There is no rule"] },
+    { id: "dress-sunglasses-gum", q: "Which items are not allowed while working?", answer: "Sunglasses and chewing gum", wrong: ["PWI shirts and sneakers", "Hair ties and clean shorts", "Name tags and socks"] },
+    { id: "dress-family", q: "What clothing standard applies in the family-friendly store?", answer: "Clean, presentable clothing with no profanity or inappropriate graphics", wrong: ["Any graphic is acceptable", "Shorts must be shorter than mid-thigh", "Dirty clothing is acceptable on slow days"] },
+    { id: "dress-shorts", q: "How short may work pants or shorts be?", answer: "No shorter than mid-thigh", wrong: ["Any length", "Shorter than mid-thigh", "They must end above the hip"] },
+
+    { id: "punctual-five", q: "How early should you arrive before your shift?", answer: "5 minutes early", wrong: ["Exactly at the start time", "15 minutes late", "Whenever the previous employee leaves"] },
+    { id: "punctual-penalty", q: "What is the stated consequence for arriving after the scheduled start time?", answer: "A $20 attendance penalty for each occurrence", wrong: ["No consequence", "A free shift item", "A $5 bonus"] },
+    { id: "punctual-repeat", q: "What can repeated tardiness lead to?", answer: "Dismissal", wrong: ["A promotion", "Extra breaks", "First choice of shifts"] },
+    { id: "summer-availability", q: "When should optional vacations, travel, concerts, and festivals be planned?", answer: "September, because full availability is expected during summer", wrong: ["During the busiest summer weekends", "During any scheduled shift", "Only after arriving late"] },
+    { id: "summer-emergencies", q: "How are genuine emergencies handled during the summer availability period?", answer: "They are handled individually", wrong: ["They are treated exactly like optional concerts", "They are never discussed", "Employees must find a customer to cover"] },
+    { id: "break-eight", q: "What is the stated break rule for a shift of up to 8 hours?", answer: "No breaks", wrong: ["A one-hour break", "Two automatic breaks", "Leave whenever the store is slow"] },
+
+    { id: "register-mistake", q: "You make a mistake on the register. What should you do?", answer: "Write it in the notebook and tell the manager", wrong: ["Void and re-ring it yourself", "Ignore it", "Take the difference from tips"], required: true },
+    { id: "cups-never-trash", q: "What should you do instead of throwing away a reusable cup?", answer: "Wash it", wrong: ["Hide it", "Take it home", "Put it in the trash"] },
+    { id: "cups-damaged", q: "What should you do with a damaged cup?", answer: "Keep it and record it in the notebook", wrong: ["Throw it away", "Use it for a customer", "Take it home"] },
+    { id: "bathroom-behind-counter", q: "Who is allowed behind the counter?", answer: "Employees only", wrong: ["Any customer who asks", "Employees' friends", "Anyone using the restroom"] },
+    { id: "bathroom-response", q: "What should you tell a customer asking to use the restroom?", answer: "I am sorry, but we do not have public restrooms", wrong: ["Go ahead; it is in the back", "Only if you buy something", "Walk behind the counter and find it"] },
+    { id: "belongings-back", q: "Where should personal belongings be kept?", answer: "In the back of the store", wrong: ["On the front counter", "Beside the register", "On top of a machine"] },
+
+    { id: "camera", q: "Are the store cameras actually watched?", answer: "Yes, we watch the cameras", wrong: ["No, they are decorations", "Only customers can watch them", "Only after the season ends"], required: true },
+    { id: "first-shift", q: "What must first shift complete before second shift arrives?", answer: "Restock cups and spoons, make every flavor that fits, fill vanilla and chocolate, wring out all rags, and leave the store spotless", wrong: ["Leave unfinished work for second shift", "Only count the register", "Turn off all machines and leave"], required: true },
+    { id: "visible-front", q: "Where should employees remain visible while waiting for customers?", answer: "At the front counter facing the boardwalk", wrong: ["In the bathroom", "Hidden in the back", "Outside with friends"] },
+    { id: "feet-counter", q: "May employees put their feet on the counter?", answer: "No", wrong: ["Yes, when it is raining", "Yes, if no customer is inside", "Yes, during closing"] },
+    { id: "smoking-vaping", q: "Where is smoking or vaping allowed in the store?", answer: "Nowhere — including the bathroom, back, and behind the counter", wrong: ["Only in the bathroom", "Only behind the counter", "Anywhere during slow periods"] },
+    { id: "no-free", q: "May an employee give a free product to a friend?", answer: "No. No free stuff to anyone", wrong: ["Yes, when business is slow", "Yes, if the owner is not present", "Yes, one item per friend"], required: true },
+    { id: "employee-item", q: "What item is an employee entitled to during a shift?", answer: "One water ice, ice cream, or Polish Freeze in a no-logo cup", wrong: ["Any menu item", "Unlimited products", "One item for the employee and one for a friend"] },
+    { id: "no-taking", q: "May products, drinks, or supplies be taken without permission?", answer: "No", wrong: ["Yes, at the end of a slow shift", "Yes, if they are inexpensive", "Yes, when a friend asks"] },
+    { id: "theft", q: "How can taking store products or supplies without approval be treated?", answer: "As theft that can result in immediate dismissal", wrong: ["As an employee discount", "As a harmless mistake every time", "As a customer-service bonus"] },
+    { id: "friends-counter", q: "What should employees do about friends hanging around the counter?", answer: "Discourage them from hanging around", wrong: ["Invite them behind the counter", "Give them free products", "Let them distract the shift"] },
+    { id: "cash-straight-register", q: "What should happen immediately after receiving cash?", answer: "Put it straight into the register", wrong: ["Hold it until the end of the shift", "Play with it", "Set it aside on the counter"] },
+    { id: "ring-before-payment", q: "When must items be rung into the register for a non-cash payment?", answer: "Before processing the payment", wrong: ["After the customer leaves", "Only if the customer asks", "At the end of the night"], required: true },
+    { id: "tips-cash", q: "How are tips accepted?", answer: "Cash only", wrong: ["Card only", "Cash or card", "Tips are forbidden"] },
+    { id: "tips-thank", q: "How should you respond when a customer tips?", answer: "Smile and thank them", wrong: ["Ignore it", "Ask why the tip is small", "Demand a larger tip"] },
+    { id: "station-clean", q: "What should happen to your station between orders?", answer: "Keep it clean", wrong: ["Let mess accumulate until closing", "Leave it for another employee", "Clean only when a manager arrives"] },
+    { id: "public-image", q: "How should you behave knowing customers may take photos or videos?", answer: "Stay presentable and avoid behavior you would not want seen online", wrong: ["Assume nobody can see you", "Sit on counters when the line is empty", "Ignore your appearance during slow periods"] },
+    { id: "downtime", q: "What should you check before relaxing during downtime?", answer: "Floors, counters, machines, and supplies", wrong: ["Only your phone notifications", "Whether friends are nearby", "Nothing — downtime means no responsibilities"] }
+  ];
+
+  const QUESTIONS_PER_ATTEMPT = 20;
+
+  function shuffleCopy(list) {
+    const copy = list.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function prepareQuestion(item) {
+    const choices = shuffleCopy([
+      { text: item.answer, isCorrect: true },
+      ...item.wrong.map(text => ({ text, isCorrect: false }))
+    ]);
+    return {
+      id: item.id,
+      q: item.q,
+      options: choices.map(choice => choice.text),
+      correct: choices.findIndex(choice => choice.isCorrect)
+    };
+  }
+
+  function buildQuiz() {
+    const required = QUIZ_BANK.filter(item => item.required);
+    const optional = shuffleCopy(QUIZ_BANK.filter(item => !item.required));
+    const selected = required.concat(optional.slice(0, QUESTIONS_PER_ATTEMPT - required.length));
+    return shuffleCopy(selected).map(prepareQuestion);
+  }
+
+  let QUIZ = buildQuiz();
+  `;
+
+    template = template.replace(/  const QUIZ = \[[\s\S]*?\n  \];/, quizBankSource);
+    template = template.replace('Use this quiz to test your training knowledge before your first shift. You need at least 80% correct to pass.', 'Each attempt gives you 20 rotating questions from the full training bank. Questions and answer choices change every time. You need at least 80% correct to pass.');
+    template = template.replace('qi = 0; score = 0;', 'qi = 0; score = 0; QUIZ = buildQuiz();');
+
     const resourceScript = '<script>window.__resources = ' +
       JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
       ';</' + 'script>';
