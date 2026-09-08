@@ -123,7 +123,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const workplaceRuleAnchor = '<li>Always be visible at the front counter';
     const cameraRule = '<li><strong>Yes, we watch the cameras!</strong></li>\n        ';
     const firstShiftRule = '<li><strong>First Shift Rule:</strong> Before the second shift arrives, restock all spoons and cups, make every flavor that fits in the tanks, fill the vanilla and chocolate tanks, wring out all rags, and leave the store spotless. The second shift must arrive to a store that is fully ready for work—with nothing left for them to finish.</li>\n        ';
-    template = template.replace(workplaceRuleAnchor, cameraRule + firstShiftRule + workplaceRuleAnchor);
+    const finalPaycheckRule = '<li><strong>Final Paycheck and Tips:</strong> You are responsible for planning your departure from town so you have enough time after your last shift to receive your final paycheck and tips. Confirm with management when both will be available <strong>before making your travel arrangements.</strong></li>\n        ';
+    template = template.replace(workplaceRuleAnchor, cameraRule + firstShiftRule + finalPaycheckRule + workplaceRuleAnchor);
 
     const quizBankSource = `
   const QUIZ_BANK = [
@@ -224,6 +225,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     { id: "ring-before-payment", q: "When must items be rung into the register for a non-cash payment?", answer: "Before processing the payment", wrong: ["After the customer leaves", "Only if the customer asks", "At the end of the night"], required: true },
     { id: "tips-cash", q: "How are tips accepted?", answer: "Cash only", wrong: ["Card only", "Cash or card", "Tips are forbidden"] },
     { id: "tips-thank", q: "How should you respond when a customer tips?", answer: "Smile and thank them", wrong: ["Ignore it", "Ask why the tip is small", "Demand a larger tip"] },
+    { id: "final-paycheck-tips", q: "What should you do before booking your departure from town?", answer: "Confirm when your final paycheck and tips will be available and plan your departure accordingly.", wrong: ["Book the earliest trip out of town right after your last shift", "Assume your paycheck and tips will be ready whenever you leave", "Ask another employee to pick up your paycheck and tips without talking to management"], explanation: "Confirm final paycheck and tip timing with management before making travel arrangements so you leave enough time after your last shift." },
     { id: "station-clean", q: "What should happen to your station between orders?", answer: "Keep it clean", wrong: ["Let mess accumulate until closing", "Leave it for another employee", "Clean only when a manager arrives"] },
     { id: "public-image", q: "How should you behave knowing customers may take photos or videos?", answer: "Stay presentable and avoid behavior you would not want seen online", wrong: ["Assume nobody can see you", "Sit on counters when the line is empty", "Ignore your appearance during slow periods"] },
     { id: "downtime", q: "What should you check before relaxing during downtime?", answer: "Floors, counters, machines, and supplies", wrong: ["Only your phone notifications", "Whether friends are nearby", "Nothing — downtime means no responsibilities"] }
