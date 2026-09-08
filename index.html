@@ -121,10 +121,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     template = template.replace(/\s+integrity="[^"]*"/gi, '').replace(/\s+crossorigin="[^"]*"/gi, '');
 
     const workplaceRuleAnchor = '<li>Always be visible at the front counter';
+    const workplaceRuleLastItem = '<li>If standing around, ask yourself: is the floor clean? Counters wiped? Machines presentable? Supplies stocked? If everything is good, relax and wait for the next customer.</li>';
     const cameraRule = '<li><strong>Yes, we watch the cameras!</strong></li>\n        ';
     const firstShiftRule = '<li><strong>First Shift Rule:</strong> Before the second shift arrives, restock all spoons and cups, make every flavor that fits in the tanks, fill the vanilla and chocolate tanks, wring out all rags, and leave the store spotless. The second shift must arrive to a store that is fully ready for work—with nothing left for them to finish.</li>\n        ';
     const finalPaycheckRule = '<li><strong>Final Paycheck and Tips:</strong> You are responsible for planning your departure from town so you have enough time after your last shift to receive your final paycheck and tips. Confirm with management when both will be available <strong>before making your travel arrangements.</strong></li>\n        ';
-    template = template.replace(workplaceRuleAnchor, cameraRule + firstShiftRule + finalPaycheckRule + workplaceRuleAnchor);
+    template = template.replace(workplaceRuleAnchor, cameraRule + firstShiftRule + workplaceRuleAnchor);
+    template = template.replace(workplaceRuleLastItem, workplaceRuleLastItem + '\n        ' + finalPaycheckRule.trimEnd());
 
     const quizBankSource = `
   const QUIZ_BANK = [
